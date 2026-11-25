@@ -59,7 +59,7 @@ struct DesktopView: View {
                 Text("NO data available")
                 Spacer()
             }
-            .frame(minWidth: 400, minHeight: 300)
+            .frame(minWidth: 500, minHeight: 350)
             .background(Color.black)
             .border(Color.green)
         }
