@@ -6,7 +6,7 @@ struct DesktopView: View {
             Color.black
                 .ignoresSafeArea()
             VStack {
-                Text("Glitch")
+                Text("Memory_01")
                     .font(.system(
                         size: 60,
                         weight: .light,
@@ -14,16 +14,18 @@ struct DesktopView: View {
                     ))
                     .tracking(15)
                     .foregroundColor(.green)
-                Text("System 01")
+                Text("Identity: 0x00000000")
                     .tracking(5)
                     .foregroundColor(.gray)
-                Text("Everything is functioning normally")
+                Text("Memory Reconstruction System")
                     .font(.system(size: 12))
                     .foregroundColor(.gray.opacity(0.5))
             }
 
             VStack {
                 DesktopIcon(name: "Files", icon: "folder")
+                DesktopIcon(name: "Browser", icon: "safari")
+
             }
             .frame(
                 maxWidth: .infinity,
