@@ -1,4 +1,4 @@
-import swiftUI
+import SwiftUI
 
 @main
 struct GLitchApp: App {
