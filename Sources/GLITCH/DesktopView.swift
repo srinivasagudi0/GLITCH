@@ -23,6 +23,9 @@ struct DesktopView: View {
             }
             
         }
-        .frame(minWidth: 400, minHeight: 300)
+        VStack {
+            DesktopIcon(name: "Files", icon: "folder")
+        }
+        .frame(minWidth: 400, minHeight: 600)
     }
 }
