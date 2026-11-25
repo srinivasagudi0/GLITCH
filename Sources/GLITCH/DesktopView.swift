@@ -1,6 +1,9 @@
 import SwiftUI
 
 struct DesktopView: View {
+
+    @State private var activeApp: String? = nil
+
     var body: some View {
         ZStack {
             Color.black
@@ -24,7 +27,13 @@ struct DesktopView: View {
 
             VStack {
                 DesktopIcon(name: "Files", icon: "folder")
+                    .onTapGesture(count: 2) {
+                        activeApp = "Files"
+                    }
                 DesktopIcon(name: "Browser", icon: "safari")
+                    .onTapGesture(count: 2) {
+                        activeApp = "Browser"
+                    }
 
             }
             .frame(
@@ -35,5 +44,24 @@ struct DesktopView: View {
             .padding(25)
         }
         .frame(minWidth: 900, minHeight: 600)
+        if let app = activeApp {
+            VStack {
+                HStack {
+                    Text(app)
+                    Spacer()
+                    Button("x") {
+                        activeApp = nil
+                    }
+                }
+                .padding()
+                Divider()
+                Spacer()
+                Text("NO data available")
+                Spacer()
+            }
+            .frame(minWidth: 400, minHeight: 300)
+            .background(Color.black)
+            .border(Color.green)
+        }
     }
 }
