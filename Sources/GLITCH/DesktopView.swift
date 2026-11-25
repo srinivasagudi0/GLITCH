@@ -21,11 +21,17 @@ struct DesktopView: View {
                     .font(.system(size: 12))
                     .foregroundColor(.gray.opacity(0.5))
             }
-            
+
+            VStack {
+                DesktopIcon(name: "Files", icon: "folder")
+            }
+            .frame(
+                maxWidth: .infinity,
+                maxHeight: .infinity,
+                alignment: .topLeading
+            )
+            .padding(25)
         }
-        VStack {
-            DesktopIcon(name: "Files", icon: "folder")
-        }
-        .frame(minWidth: 400, minHeight: 600)
+        .frame(minWidth: 900, minHeight: 600)
     }
 }
