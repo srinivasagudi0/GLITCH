@@ -2,13 +2,12 @@ import SwiftUI
 
 struct BrowserView: View {
     @State private var search = ""
-    @State private var result = "Awaiting input..."
+    @State private var result = "Search for missing memory records."
 
     let database = [
-        "reactor": "Experimental energy source. Project ID: 3000.",
-        "owner": "Identity encrypted.",
-        "memory": "Recovery system active. Memory reconstruction in progress.", 
-        "3000": "Acess granted. Memeory fragement recovered."
+        "reactor": "Record found. Enter recovery code 3000 to restore this memory.",
+        "3000": "Memory recovered. Identity partially restored.",
+        "owner": "Identity unavailable."
     ]
 
     var body: some View {
@@ -38,6 +37,6 @@ struct BrowserView: View {
     func lookup() {
         result = database[search.lowercased()
             .trimmingCharacters(in: .whitespacesAndNewlines)]
-            ?? "No records found."
+            ?? "No records found. Check you files for clues."
     }
 }

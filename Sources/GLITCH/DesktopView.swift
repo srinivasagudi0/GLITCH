@@ -30,7 +30,7 @@ struct DesktopView: View {
                     .onTapGesture(count: 2) {
                         activeApp = "Files"
                     }
-                DesktopIcon(name: "Browser", icon: "safari")
+                DesktopIcon(name: "Database", icon: "externaldrive")
                     .onTapGesture(count: 2) {
                         activeApp = "Browser"
                     }

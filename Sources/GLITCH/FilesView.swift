@@ -4,12 +4,10 @@ struct FilesView: View {
     @State private var selectedFile: String? 
     
     let files = [
-        "memory_01.txt": "I need to get out of here.",
-        "research.txt": "The  reactor is finally stable.",
-        "classified.txt": "Acess denied.",
-        "instruction.txt": "search the internal database.",
-        "system.log": "Identity corrupted. Memory reconstruction is required.",
-        "message.txt": "If you are reading this, then find me."
+        "readme.txt": "Memory corrupted. Search fpr the database to recover missing records.",
+        "memory_01.txt": "I remember building a reactor. Search for it.",
+        "research.txt": "Reactor records are stored in the database.",
+        "classified.txt": "Security clearance required."
     ]
 
     var body: some View {
