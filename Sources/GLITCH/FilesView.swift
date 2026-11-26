@@ -6,7 +6,10 @@ struct FilesView: View {
     let files = [
         "memory_01.txt": "I need to get out of here.",
         "research.txt": "The  reactor is finally stable.",
-        "classified.txt": "Acess denied."
+        "classified.txt": "Acess denied.",
+        "instruction.txt": "search the internal database.",
+        "system.log": "Identity corrupted. Memory reconstruction is required.",
+        "message.txt": "If you are reading this, then find me."
     ]
 
     var body: some View {

@@ -5,7 +5,10 @@ struct BrowserView: View {
     @State private var result = "Awaiting input..."
 
     let database = [
-        "reactor": "Experimental energy source. Project ID: 3000."
+        "reactor": "Experimental energy source. Project ID: 3000.",
+        "owner": "Identity encrypted.",
+        "memory": "Recovery system active. Memory reconstruction in progress.", 
+        "3000": "Acess granted. Memeory fragement recovered."
     ]
 
     var body: some View {

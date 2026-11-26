@@ -59,8 +59,7 @@ struct DesktopView: View {
                 if app == "Files" {
                     FilesView()
                 } else if app == "Browser" {
-                    //BrowserView()
-                    Text("Browser is not implemented yet.")
+                    BrowserView()
                 }
                 Spacer()
             }
