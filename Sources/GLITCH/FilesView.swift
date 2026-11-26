@@ -4,16 +4,15 @@ struct FilesView: View {
     @State private var selectedFile: String? 
     
     let files = [
-        "memory_01.txt",
-        "research.txt",
-        "classified.txt"
+        "memory_01.txt": "I need to get out of here.",
+        "research.txt": "The  reactor is finally stable.",
+        "classified.txt": "Acess denied."
     ]
 
     var body: some View {
         HStack {
             VStack(alignment: .leading) {
-                forEach(files, id: \.self) {
-                    file in 
+                ForEach(files.keys.sorted(), id: \.self) { file in
                     Button(file) {
                         selectedFile = file
                     }
@@ -22,10 +21,14 @@ struct FilesView: View {
             }
             .frame(width: 200)
             Divider()
-            Text(selectedFile ?? "Select a file")
+            
+            Text(files[selectedFile ?? ""] ?? "Select a file")
+                .padding()
                 .frame(maxWidth: .infinity, maxHeight: .infinity)
+            
         }
         .padding()
         .foregroundColor(.green)
+        .background(Color.black)
     }
 }

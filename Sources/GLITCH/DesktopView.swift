@@ -56,7 +56,12 @@ struct DesktopView: View {
                 .padding()
                 Divider()
                 Spacer()
-                Text("NO data available")
+                if app == "Files" {
+                    FilesView()
+                } else if app == "Browser" {
+                    //BrowserView()
+                    Text("Browser is not implemented yet.")
+                }
                 Spacer()
             }
             .frame(minWidth: 500, minHeight: 350)
