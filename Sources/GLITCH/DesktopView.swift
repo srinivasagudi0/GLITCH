@@ -3,6 +3,7 @@ import SwiftUI
 struct DesktopView: View {
 
     @State private var activeApp: String? = nil
+    @State private var recovered = false
 
     var body: some View {
         ZStack {
@@ -17,10 +18,10 @@ struct DesktopView: View {
                     ))
                     .tracking(15)
                     .foregroundColor(.green)
-                Text("Identity: 0x00000000")
+                Text(recovered ? "Identity: T.S" : "Identity: 0x00000000")
                     .tracking(5)
                     .foregroundColor(.gray)
-                Text("Memory Reconstruction System")
+                Text(recovered ? "Memory recovered: 25%" : "Memory Reconstruction System")
                     .font(.system(size: 12))
                     .foregroundColor(.gray.opacity(0.5))
             }
@@ -34,6 +35,13 @@ struct DesktopView: View {
                     .onTapGesture(count: 2) {
                         activeApp = "Browser"
                     }
+                
+                if recovered {
+                    DesktopIcon(name: "Memory_02", icon: "lock.open")
+                        .onTapGesture(count: 2) {
+                            activeApp = "Memory"
+                        }
+                }
 
             }
             .frame(
@@ -59,7 +67,10 @@ struct DesktopView: View {
                 if app == "Files" {
                     FilesView()
                 } else if app == "Browser" {
-                    BrowserView()
+                    BrowserView(recovered: $recovered)
+                } else if app == "Memory" {
+                    Text("I built it in a cave.")
+                        .foregroundColor(.green)
                 }
                 Spacer()
             }
