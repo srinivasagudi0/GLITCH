@@ -41,7 +41,7 @@ struct BrowserView: View {
             .trimmingCharacters(in: .whitespacesAndNewlines)]
             ?? "No records found. Check you files for clues."
         
-        if search.trimmingCharecters(in: .shitespacesAndNewlines) == "3000" {
+        if search.trimmingCharacters(in: .whitespacesAndNewlines) == "3000" {
             withAnimation(.easeInOut(duration: 1.0)) {
                 recovered = true
             }
