@@ -49,4 +49,19 @@ struct MemoryView: View {
         }
     }
 
+    func reconstruct() {
+        running = true
+
+        Task {
+            for i in 1...logs.count {
+                try? await Task.sleep(for: .milliseconds(650))
+
+                withAnimation {
+                    index = i
+                }
+            }
+            identified = true
+            running = false
+        }
+    }
 }
