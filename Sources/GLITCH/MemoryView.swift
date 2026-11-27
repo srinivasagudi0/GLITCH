@@ -15,5 +15,38 @@ struct MemoryView: View {
         "Stark Industies acess authorized."
     ]
 
-    
+    var body: some View {
+        VStack(alignment: .leading, spacing: 15) {
+            Text("Memory Reconstruction")
+                .font(.title2)
+            
+            Divider()
+
+            ForEach(0..<logs.count, id: \.self) { i in 
+                Text("> " + logs[i])
+            }
+
+            Spacer()
+
+            ProgressView(
+                value: Double(index),
+                total: Double(logs.count)
+            )
+            .tint(.green)
+
+            Button(identified ? "Access Authorized" : "Reconstruct Memory") {
+                reconstruct()
+            }
+            .disabled(running || identified)
+        }
+        .padding(25)
+        .foregroundColor(.green)
+        .font(.system(.body, design: .monospaced))
+        .task {
+            if identified {
+                index = logs.count
+            }
+        }
+    }
+
 }
