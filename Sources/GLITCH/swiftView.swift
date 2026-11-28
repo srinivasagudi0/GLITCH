@@ -43,13 +43,38 @@ struct StarkView: View {
                 
                 Text("TONY STARK LOCATED")
             } else {
-                Button(action: {
+                Button(scanning ? "Scanning..." : "Locate Tony Stark") {
                     Button(scanning ? "Scanning..." : "Start Scanning") {
                         scan()
                     } 
-                })
+                    .disabled(scanning)
+                }
             }
+            .padding(25)
+            .foregroundColor(.green)
+            .font(.system(.body, design: .monospaced))
+            .task {
+                if completed {
+                    progress = logs.count
+                }
+            }
+        }
 
+        func scan() {
+            scanning = true
+
+            Task {
+                for i in 1...logs.count {
+                    try? await Task.sleep(seconds: 1)
+                    withAnimation {
+                        progress = i
+                    }
+                }
+                withAnimation {
+                    completed = true
+                    scanning = false
+                }
+            }
         }
     }
 
