@@ -22,7 +22,7 @@ struct MemoryView: View {
             
             Divider()
 
-            ForEach(0..<logs.count, id: \.self) { i in 
+            ForEach(0..<index, id: \.self) { i in 
                 Text("> " + logs[i])
             }
 

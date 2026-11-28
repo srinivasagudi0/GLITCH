@@ -3,6 +3,7 @@ import SwiftUI
 struct DesktopView: View {
 
     @State private var activeApp: String? = nil
+    @State private var identified = false
     @State private var recovered = false
 
     var body: some View {
@@ -18,10 +19,10 @@ struct DesktopView: View {
                     ))
                     .tracking(15)
                     .foregroundColor(.green)
-                Text(recovered ? "Identity: T.S" : "Identity: 0x00000000")
+                Text(recovered ? "Identity: T.S" : identified ? "Identity: Tony Stark" : "Identity: 0x00000000")
                     .tracking(5)
                     .foregroundColor(.gray)
-                Text(recovered ? "Memory recovered: 25%" : "Memory Reconstruction System")
+                Text(identified ? "Memory recovered: 50%" : recovered ? "Memory recovered: 25%" : "Memory Reconstruction System")
                     .font(.system(size: 12))
                     .foregroundColor(.gray.opacity(0.5))
             }
@@ -40,6 +41,13 @@ struct DesktopView: View {
                     DesktopIcon(name: "Memory_02", icon: "lock.open")
                         .onTapGesture(count: 2) {
                             activeApp = "Memory"
+                        }
+                }
+
+                if identified {
+                    DesktopIcon(name: "Stark Industries", icon: "network")
+                        .onTapGesture(count: 2) {
+                            activeApp = "Stark"
                         }
                 }
 
@@ -69,9 +77,12 @@ struct DesktopView: View {
                 } else if app == "Browser" {
                     BrowserView(recovered: $recovered)
                 } else if app == "Memory" {
-                    Text("I built it in a cave.")
+                    MemoryView(identified: $identified)
+                } else if app == "Stark" {
+                    Text("Secure network connected.")
                         .foregroundColor(.green)
                 }
+
                 Spacer()
             }
             .frame(minWidth: 500, minHeight: 350)
