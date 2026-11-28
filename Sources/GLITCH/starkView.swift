@@ -44,11 +44,8 @@ struct StarkView: View {
                 Text("TONY STARK LOCATED")
             } else {
                 Button(scanning ? "Scanning..." : "Locate Tony Stark") {
-                    Button(scanning ? "Scanning..." : "Start Scanning") {
-                        scan()
-                    } 
-                    .disabled(scanning)
-                }
+                   scans()
+                }.disabled(scanning)
             }
             .padding(25)
             .foregroundColor(.green)
@@ -65,7 +62,7 @@ struct StarkView: View {
 
             Task {
                 for i in 1...logs.count {
-                    try? await Task.sleep(seconds: 1)
+                    try? await Task.sleep(for: .seconds(1))
                     withAnimation {
                         progress = i
                     }
