@@ -39,7 +39,35 @@ struct MemoryView: View {
                 Text("Hint: Star the system, restore power, verify the owner, then resttore communication.")
                     .foregroundColor(.gray)
                     .font(.system(.body, design: .monospaced))
+                
+                LazyVGrid(columns: [
+                    GridItem(.flexible()),
+                    GridItem(.flexible())
+                ]) {
+                    ForEach(fragments, id: \.self) { fragment in 
+                        Button(fragment) {
+                            selected.append(fragment)
+                        }
+                        .disabled(selected.contains(fragment))
+                    }
+                }
+                Divider()
+
+                ForEach(0..<4, id: \.self) { i in 
+                    Text(i < selected.count ? selected[i] : "[EMPTY BLOCK]")
+                        .frame(maxWidth: .infinity)
+                        .padding(5)
+                        .border(Color.green.opacity(0.4))
+                }
+
+                Text(message)
+
+                Button("Reset Sequence") {
+                    selected.removeAll()
+                    message = "Restore the correct sequence."
+                }
             }
+            
 
 
             ForEach(0..<index, id: \.self) { i in 
