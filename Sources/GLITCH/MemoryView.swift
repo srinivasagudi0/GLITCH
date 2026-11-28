@@ -4,6 +4,16 @@ struct MemoryView: View {
     @Binding var identified: Bool
     @State private var index = 0
     @State private var running = false
+    @State private var selected: [String] = []
+    @State private var message = "Restore the correct sequence."
+
+    let correctOrder = [
+        "boot", "Reactor", "Identity", "Transmission"
+    ]
+
+    @State private var fragments = [
+        "TRANSFORM", "BOOT", "IDENTITY", "REACTOR" 
+    ]
 
     let logs = [
         "Initializing memory reconstruction...",
@@ -21,6 +31,16 @@ struct MemoryView: View {
                 .font(.title2)
             
             Divider()
+
+            if !identified && !running {
+                Text("CORRUPTED MEMORY BLOCKS")
+                    .foregroundColor(.gray)
+
+                Text("Hint: Star the system, restore power, verify the owner, then resttore communication.")
+                    .foregroundColor(.gray)
+                    .font(.system(.body, design: .monospaced))
+            }
+
 
             ForEach(0..<index, id: \.self) { i in 
                 Text("> " + logs[i])
