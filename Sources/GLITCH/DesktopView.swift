@@ -5,6 +5,7 @@ struct DesktopView: View {
     @State private var activeApp: String? = nil
     @State private var identified = false
     @State private var recovered = false
+    @State private var completed = false
 
     var body: some View {
         ZStack {
@@ -22,7 +23,7 @@ struct DesktopView: View {
                 Text(recovered ? "Identity: T.S" : identified ? "Identity: Tony Stark" : "Identity: 0x00000000")
                     .tracking(5)
                     .foregroundColor(.gray)
-                Text(identified ? "Memory recovered: 50%" : recovered ? "Memory recovered: 25%" : "Memory Reconstruction System")
+                Text(completed ? "MISSION COMPLETE" : identified ? "Memory recovered: 50%" : recovered ? "Memory recovered: 25%" : "Memory Reconstruction System")
                     .font(.system(size: 12))
                     .foregroundColor(.gray.opacity(0.5))
             }
@@ -50,6 +51,7 @@ struct DesktopView: View {
                             activeApp = "Stark"
                         }
                 }
+
 
             }
             .frame(
@@ -79,8 +81,7 @@ struct DesktopView: View {
                 } else if app == "Memory" {
                     MemoryView(identified: $identified)
                 } else if app == "Stark" {
-                    Text("Secure network connected.")
-                        .foregroundColor(.green)
+                    StarkView(completed: $completed)
                 }
 
                 Spacer()
