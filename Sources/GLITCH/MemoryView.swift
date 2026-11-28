@@ -82,10 +82,10 @@ struct MemoryView: View {
             )
             .tint(.green)
 
-            Button(identified ? "Access Authorized" : "Reconstruct Memory") {
-                reconstruct()
+            Button(identified ? "Access Authorized" : "Verify Sequence") {
+                validateSequence()
             }
-            .disabled(running || identified)
+            .disabled(running || identified || selected.count != 4)
         }
         .padding(25)
         .foregroundColor(.green)
@@ -112,4 +112,16 @@ struct MemoryView: View {
             running = false
         }
     }
+
+    func validateSequence() {
+        if selected == correctOrder {
+            message = "Sequence Verified."
+            reconstruct()
+        } else {
+            message = "Incorrect sequence. Please try again."
+            selected.removeAll()
+            fragments.shuffle()
+        }
+    }
+    
 }
